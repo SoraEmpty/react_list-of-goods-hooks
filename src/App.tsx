@@ -17,11 +17,12 @@ export const goodsFromServer = [
 ];
 
 enum Direction {
-  Alphabet = "Alphabet",
+  Alphabet = 'Alphabet',
   length = 'length',
 }
 
 function getPreparedGoods(
+
   goods: string[],
   sortField: string,
   isReversed: boolean,
@@ -52,6 +53,10 @@ export const App: React.FC = () => {
   const [sortField, setSortField] = useState<string | ''>('');
   const [isReversed, setIsReversed] = useState(false);
   const visibleGoods = getPreparedGoods(goodsFromServer, sortField, isReversed);
+  const handleReset = () => {
+        setSortField('');
+        setIsReversed(false);
+      };
 
   return (
     <div className="section content">
@@ -90,10 +95,9 @@ export const App: React.FC = () => {
           <button
             type="button"
             className="button is-danger is-light"
-            onClick={() => {
-              setSortField('');
-              setIsReversed(false);
-            }}
+            onClick={
+              handleReset
+            }
           >
             Reset
           </button>
